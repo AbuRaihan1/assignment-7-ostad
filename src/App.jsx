@@ -14,7 +14,8 @@ function TodoList() {
     setNewDescription(event.target.value);
   };
 
-  const handleAddTask = () => {
+  const handleAddTask = (e) => {
+    e.preventDefault();
     if (newTask.trim() !== "") {
       setTasks([...tasks, { task: newTask, description: newDescription }]);
       setNewTask("");
@@ -34,37 +35,43 @@ function TodoList() {
   return (
     <div className="container">
       <h1 className="text-center mt-5">Todo App</h1>
-      <div className="mb-3">
-        <input
-          type="text"
-          className="form-control form-control"
-          id="taskInput"
-          placeholder="Task Title"
-          value={newTask}
-          onChange={handleInputChange}
-          required
-        />
-      </div>
-      <div className="mb-3">
-        <textarea
-          className="form-control"
-          id="descriptionInput"
-          rows="3"
-          placeholder="Task description"
-          value={newDescription}
-          onChange={handleDescriptionChange}
-          required
-        />
-      </div>
-      <button className="btn btn-primary btn-lg" onClick={handleAddTask}>
-        Add Task
-      </button>
+      <form onSubmit={handleAddTask}>
+        <div className="mb-3">
+          <input
+            type="text"
+            className="form-control form-control"
+            id="taskInput"
+            placeholder="Task Title"
+            value={newTask}
+            onChange={handleInputChange}
+            required
+          />
+        </div>
+        <div className="mb-3">
+          <textarea
+            className="form-control"
+            id="descriptionInput"
+            rows="3"
+            placeholder="Task description"
+            value={newDescription}
+            onChange={handleDescriptionChange}
+            required
+          />
+        </div>
+        <button className="btn btn-primary btn-lg">Add Task</button>
+      </form>
       <ul className="list-group mt-3">
         {tasks.map((task, idx) => (
           <li
             key={idx}
-            className="list-group-item border rounded"
-            style={{ marginBottom: "20px", background: "#e6e0e0" }}
+            className="list-group-item"
+            style={{
+              marginBottom: "20px",
+              background: "#ffffff",
+              boxShadow: "2px 2px 14px rgba(0, 0, 0, 0.2)",
+              border : '0px',
+              borderRadius : "8px"
+            }}
           >
             <h5>{task.task}</h5>
             <p style={{ overflow: "auto" }}>{task.description}</p>
