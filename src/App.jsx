@@ -6,12 +6,12 @@ function TodoList() {
   const [newTask, setNewTask] = useState("");
   const [newDescription, setNewDescription] = useState("");
 
-  const handleInputChange = (event) => {
-    setNewTask(event.target.value);
+  const handleInputChange = (e) => {
+    setNewTask(e.target.value);
   };
 
-  const handleDescriptionChange = (event) => {
-    setNewDescription(event.target.value);
+  const handleDescriptionChange = (e) => {
+    setNewDescription(e.target.value);
   };
 
   const handleAddTask = (e) => {
@@ -40,10 +40,10 @@ function TodoList() {
           <input
             type="text"
             className="form-control form-control"
-            id="taskInput"
-            placeholder="Task Title"
             value={newTask}
             onChange={handleInputChange}
+            id="taskInput"
+            placeholder="Task Title"
             required
           />
         </div>
@@ -51,10 +51,10 @@ function TodoList() {
           <textarea
             className="form-control"
             id="descriptionInput"
+            onChange={handleDescriptionChange}
             rows="3"
             placeholder="Task description"
             value={newDescription}
-            onChange={handleDescriptionChange}
             required
           />
         </div>
