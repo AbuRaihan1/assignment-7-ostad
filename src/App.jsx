@@ -61,29 +61,52 @@ function TodoList() {
         <button className="btn btn-primary btn-lg">Add Task</button>
       </form>
       <ul className="list-group mt-3">
-        {tasks.map((task, idx) => (
-          <li
-            key={idx}
-            className="list-group-item"
+        {tasks.length === 0 ? (
+          <p
             style={{
-              marginBottom: "20px",
-              background: "#ffffff",
-              boxShadow: "2px 2px 14px rgba(0, 0, 0, 0.2)",
-              border : '0px',
-              borderRadius : "8px"
+              textAlign: "center",
+              fontSize: "28px",
+              fontWeight: "bold",
             }}
           >
-            <h5>{task.task}</h5>
-            <p style={{ overflow: "auto" }}>{task.description}</p>
-            <button
-              className="btn btn-danger btn-md float-end"
-              style={{ marginTop: "-52px" }}
-              onClick={() => handleRemoveTask(idx)}
+            No task added.
+          </p>
+        ) : (
+          <div>
+            <p
+              style={{
+                textAlign: "center",
+                fontSize: "28px",
+                fontWeight: "bold",
+              }}
             >
-              Delete
-            </button>
-          </li>
-        ))}
+              You have {tasks.length} {tasks.length === 1 ? "task" : "tasks"}.
+            </p>
+            {tasks.map((task, idx) => (
+              <li
+                key={idx}
+                className="list-group-item"
+                style={{
+                  marginBottom: "20px",
+                  background: "#ffffff",
+                  boxShadow: "2px 2px 14px rgba(0, 0, 0, 0.2)",
+                  border: "0px",
+                  borderRadius: "8px",
+                }}
+              >
+                <h5>{task.task}</h5>
+                <p style={{ overflow: "auto" }}>{task.description}</p>
+                <button
+                  className="btn btn-danger btn-md float-end"
+                  style={{ marginTop: "-52px" }}
+                  onClick={() => handleRemoveTask(idx)}
+                >
+                  Delete
+                </button>
+              </li>
+            ))}
+          </div>
+        )}
       </ul>
     </div>
   );
